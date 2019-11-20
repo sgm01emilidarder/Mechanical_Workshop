@@ -5,14 +5,13 @@ public class Trabajador extends Persona{
 //    Ha de tenir un mètode per calcular el preu setmanal del treballador tenint en compte que les jornades són de 8 hores diàries de dilluns a divendres.
 
     private double precioHora;
-    private enum Categoria {TECNICO_JUNIOR, TECNICO_SUPERIOR, MAESTRO_TALLER};
-    public Enum<Categoria> categoria;
-    public double precioSemanal() { return precioHora * 8 * 5; };
+    private Enum<CategoriaTrabajador> categoriaTrabajadorEnum;
 
-    public Trabajador(String dni, String nombre, String apellidos, String email, Integer telefono, double precioHora, Enum<Categoria> categoria) {
+
+    public Trabajador(String dni, String nombre, String apellidos, String email, Integer telefono, double precioHora, Enum<CategoriaTrabajador> categoriaTrabajadorEnum) {
         super(dni, nombre, apellidos, email, telefono);
         this.precioHora = precioHora;
-        this.categoria = categoria;
+        this.categoriaTrabajadorEnum = categoriaTrabajadorEnum;
     }
 
     public double getPrecioHora() {
@@ -23,12 +22,12 @@ public class Trabajador extends Persona{
         this.precioHora = precioHora;
     }
 
-    public Enum<Categoria> getCategoria() {
-        return categoria;
+    public Enum<CategoriaTrabajador> getCategoriaTrabajadorEnum() {
+        return categoriaTrabajadorEnum;
     }
 
-    public void setCategoria(Enum<Categoria> categoria) {
-        this.categoria = categoria;
+    public void setCategoriaTrabajadorEnum(Enum<CategoriaTrabajador> categoriaTrabajadorEnum) {
+        this.categoriaTrabajadorEnum = categoriaTrabajadorEnum;
     }
 
     @Override
@@ -39,8 +38,10 @@ public class Trabajador extends Persona{
                 ", apellidos='" + this.getApellidos() + '\'' +
                 ", email='" + this.getEmail() + '\'' +
                 ", telefono=" + this.getTelefono() + '\'' +
-                "precioHora=" + precioHora + '\'' +
-                ", categoria=" + categoria +
+                ", precioHora=" + precioHora + '\'' +
+                ", categoriaTrabajadorEnum=" + categoriaTrabajadorEnum +
                 '}';
     }
+
+    public double precioSemanal() { return precioHora * 8 * 5; }
 }

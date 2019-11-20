@@ -2,17 +2,14 @@ package com.evolution.workshop;
 
 import java.util.Objects;
 
-public class Vehiculo {
+public class Vehiculo{
 //    matrícula, model, any de matriculació i propietari del vehicle.
     private String matricula;
     private String modelo;
     private Integer matriculacion;
-    private String propietario;
+    public Cliente propietario;
 
-    public Vehiculo() {
-    }
-
-    public Vehiculo(String matricula, String modelo, Integer matriculacion, String propietario) {
+    public Vehiculo(String matricula, String modelo, Integer matriculacion, Cliente propietario) {
         this.matricula = matricula;
         this.modelo = modelo;
         this.matriculacion = matriculacion;
@@ -43,11 +40,11 @@ public class Vehiculo {
         this.matriculacion = matriculacion;
     }
 
-    public String getPropietario() {
+    public Cliente getPropietario() {
         return propietario;
     }
 
-    public void setPropietario(String propietario) {
+    public void setPropietario(Cliente propietario) {
         this.propietario = propietario;
     }
 
@@ -70,7 +67,7 @@ public class Vehiculo {
                 "matricula='" + matricula + '\'' +
                 ", modelo='" + modelo + '\'' +
                 ", matriculacion=" + matriculacion +
-                ", propietario='" + propietario + '\'' +
+                ", propietario=" + propietario +
                 '}';
     }
 }

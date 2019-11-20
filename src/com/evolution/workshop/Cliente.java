@@ -5,10 +5,7 @@ import java.util.Objects;
 public class Cliente extends Persona{
 //    id de client (numèric tipus long) i si és “premium” o no (client soci del taller).
     private Long clienteId;
-    private boolean premium;
-
-    public Cliente() {
-    }
+    public boolean premium;
 
     public Cliente(String dni, String nombre, String apellidos, String email, Integer telefono, Long clienteId, boolean premium) {
         super(dni, nombre, apellidos, email, telefono);
