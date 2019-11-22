@@ -4,12 +4,14 @@ public class Trabajador extends Persona{
 //    Hereda de persona. Com a dades pròpies tindrà el preu per hora i la categoria (classe enumerada: tècnic junior, tècnic senior o mestre taller).
 //    Ha de tenir un mètode per calcular el preu setmanal del treballador tenint en compte que les jornades són de 8 hores diàries de dilluns a divendres.
 
+    private long idTrabajador;
     private double precioHora;
     private Enum<CategoriaTrabajador> categoriaTrabajadorEnum;
 
 
-    public Trabajador(String dni, String nombre, String apellidos, String email, Integer telefono, double precioHora, Enum<CategoriaTrabajador> categoriaTrabajadorEnum) {
+    public Trabajador(String dni, String nombre, String apellidos, String email, Integer telefono, long idTrabajador, double precioHora, Enum<CategoriaTrabajador> categoriaTrabajadorEnum) {
         super(dni, nombre, apellidos, email, telefono);
+        this.idTrabajador = idTrabajador;
         this.precioHora = precioHora;
         this.categoriaTrabajadorEnum = categoriaTrabajadorEnum;
     }
@@ -30,6 +32,14 @@ public class Trabajador extends Persona{
         this.categoriaTrabajadorEnum = categoriaTrabajadorEnum;
     }
 
+    public long getIdTrabajador() {
+        return idTrabajador;
+    }
+
+    public void setIdTrabajador(long idTrabajador) {
+        this.idTrabajador = idTrabajador;
+    }
+
     @Override
     public String toString() {
         return "Trabajador{" +
@@ -43,5 +53,6 @@ public class Trabajador extends Persona{
                 '}';
     }
 
-    public double precioSemanal() { return precioHora * 8 * 5; }
+    public double precioSemanal() { return this.precioHora * 8 * 5; }
+
 }

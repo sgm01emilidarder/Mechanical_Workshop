@@ -1,7 +1,6 @@
 package com.evolution.workshop;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
 
 public class Factura {
@@ -11,24 +10,27 @@ public class Factura {
 //    és “premium” s’ha d’aplicar un 5% de descompte.
 //    Ha de tenir un mètode estàtic per calcular l’IVA al 21%
 
-    List<Averia> averias = new ArrayList<>();
+    private long idFactura;
     private boolean estaPagado;
     private LocalDate fechaEmision;
-    private Averia averia;
+    private List<Averia> listaAverias;
 
-    public Factura(List<Averia> averias, boolean estaPagado, LocalDate fechaEmision, Averia averia) {
-        this.averias = averias;
+    public static final double IVA = 0.21;
+    public static final double DESCUENTO_PREMIUM = 0.05;
+
+    public Factura(long idFactura, boolean estaPagado, LocalDate fechaEmision, List<Averia> listaAverias) {
+        this.idFactura = idFactura;
         this.estaPagado = estaPagado;
         this.fechaEmision = fechaEmision;
-        this.averia = averia;
+        this.listaAverias = listaAverias;
     }
 
-    public List<Averia> getAverias() {
-        return averias;
+    public long getIdFactura() {
+        return idFactura;
     }
 
-    public void setAverias(List<Averia> averias) {
-        this.averias = averias;
+    public void setIdFactura(long idFactura) {
+        this.idFactura = idFactura;
     }
 
     public boolean isEstaPagado() {
@@ -47,29 +49,45 @@ public class Factura {
         this.fechaEmision = fechaEmision;
     }
 
-    public Averia getAveria() {
-        return averia;
+    public List<Averia> getListaAverias() {
+        return listaAverias;
     }
 
-    public void setAveria(Averia averia) {
-        this.averia = averia;
+    public void setListaAverias(List<Averia> listaAverias) {
+        this.listaAverias = listaAverias;
     }
 
-    public static double getIVA() {
-        return IVA;
-    }
-
-    static final double IVA = 0.21;
 
     public static double calculaIVA(double precio) {
         return precio * IVA;
     }
 
-    public double calculaFactura(double precio) {
-        if (averia.vehiculo.propietario.isPremium()) { return precio + calculaIVA(precio) - (precio * 0.05); }
-            else { return precio + calculaIVA(precio);
+    public double totalFactura() {
+        double total=0;
+        boolean clientePremium = false;
+        for (Averia e: this.listaAverias) {
+            total += e.getPrecio();
+            if (e.getVehiculo().getPropietario().isPremium()) {clientePremium = true; }
         }
+        if (clientePremium) {
+            double descuento = (total * DESCUENTO_PREMIUM);
+            total = total - descuento;
+        }
+        return total;
     }
+
+    public double totalFacturaConIVA() {
+        double total = totalFactura();
+        return total + (total * IVA);
+    }
+
+
+
+//    public double calculaFactura(double precio) {
+//        if (averia.vehiculo.propietario.isPremium()) { return precio + calculaIVA(precio) - (precio * 0.05); }
+//            else { return precio + calculaIVA(precio);
+//        }
+//    }
 
 
 }

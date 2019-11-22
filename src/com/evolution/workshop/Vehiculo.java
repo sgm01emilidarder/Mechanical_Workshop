@@ -7,7 +7,7 @@ public class Vehiculo{
     private String matricula;
     private String modelo;
     private Integer matriculacion;
-    public Cliente propietario;
+    private Cliente propietario;
 
     public Vehiculo(String matricula, String modelo, Integer matriculacion, Cliente propietario) {
         this.matricula = matricula;

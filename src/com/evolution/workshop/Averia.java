@@ -7,15 +7,15 @@ public class Averia{
 //    nivell de gravetat  de l’avaria (classe enumerada amb els valors: lleugera, mitjana i greu).
 //    També s’ha de vincular amb el mecànic que l’ha solucionada.
 
-    private String id;
+    private long id;
     private String nombreCorto;
     private String descripcion;
     private double precio;
     private Enum<GravedadAveria> gravedadAveriaEnum;
     private Trabajador mecanico;
-    public Vehiculo vehiculo;
+    private Vehiculo vehiculo;
 
-    public Averia(String id, String nombreCorto, String descripcion, double precio, Enum<GravedadAveria> gravedadAveriaEnum, Trabajador mecanico, Vehiculo vehiculo) {
+    public Averia(long id, String nombreCorto, String descripcion, double precio, Enum<GravedadAveria> gravedadAveriaEnum, Trabajador mecanico, Vehiculo vehiculo) {
         this.id = id;
         this.nombreCorto = nombreCorto;
         this.descripcion = descripcion;
@@ -25,11 +25,11 @@ public class Averia{
         this.vehiculo = vehiculo;
     }
 
-    public String getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(long id) {
         this.id = id;
     }
 
@@ -85,9 +85,8 @@ public class Averia{
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof Averia)) return false;
-        if (!super.equals(o)) return false;
         Averia averia = (Averia) o;
-        return id.equals(averia.id);
+        return id == averia.id;
     }
 
     @Override
