@@ -2,6 +2,7 @@ package com.evolution.workshop;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Objects;
 
 public class Factura {
 //    Es troba formada per una col·lecció d'avaries, si es troba pagada o no i la data d'emissió.
@@ -60,6 +61,29 @@ public class Factura {
 
     public static double calculaIVA(double precio) {
         return precio * IVA;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Factura)) return false;
+        Factura factura = (Factura) o;
+        return idFactura == factura.idFactura;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(idFactura);
+    }
+
+    @Override
+    public String toString() {
+        return "Factura{" +
+                "idFactura=" + idFactura +
+                ", estaPagado=" + estaPagado +
+                ", fechaEmision=" + fechaEmision +
+                ", listaAverias=" + listaAverias +
+                '}';
     }
 
     public double totalFactura() {

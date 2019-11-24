@@ -6,8 +6,8 @@ public class UsuarioWeb extends Cliente {
     private String usuario;
     private String password;
 
-    public UsuarioWeb(String dni, String nombre, String apellidos, String email, Integer telefono, Long clienteId, boolean premium, String usuario, String password) {
-        super(dni, nombre, apellidos, email, telefono, clienteId, premium);
+    public UsuarioWeb(Cliente cli, String usuario, String password) {
+        super(cli.getDni(), cli.getNombre(), cli.getApellidos(), cli.getEmail(), cli.getTelefono(), cli.getClienteId(), cli.isPremium());
         this.usuario = usuario;
         this.password = password;
     }
